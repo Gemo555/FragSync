@@ -1,0 +1,31 @@
+{
+  "music_path": "data/music/song.mp3",
+  "clips": [
+    {
+      "clip_path": "data/clips/clip_001.mp4",
+      "source_start": 1.9,
+      "source_end": 2.7,
+      "event_time": 2.35,
+      "target_beat": 3.2,
+      "speed": 1.0,
+      "effects": [],
+      "event_score": 0.82,
+      "event_type": "audio_visual_impact"
+    },
+    {
+      "clip_path": "data/clips/clip_002.mp4",
+      "source_start": 0.75,
+      "source_end": 1.55,
+      "event_time": 1.2,
+      "target_beat": 4.0,
+      "speed": 1.0,
+      "effects": [],
+      "event_score": 0.74,
+      "event_type": "audio_peak"
+    }
+  ],
+  "export_resolution": "1920x1080",
+  "export_fps": 60,
+  "style": "clean_sync"
+}
+

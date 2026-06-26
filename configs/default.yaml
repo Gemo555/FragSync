@@ -1,0 +1,19 @@
+editing:
+  style: clean_sync
+  pre_event_time: 0.45
+  post_event_time: 0.35
+  max_clips: 8
+
+export:
+  resolution: 1920x1080
+  fps: 60
+
+audio:
+  onset_threshold_std: 1.0
+  energy_peak_threshold_std: 1.0
+
+video:
+  sample_fps: 8.0
+  frame_diff_threshold_std: 1.0
+  merge_window_seconds: 0.16
+
