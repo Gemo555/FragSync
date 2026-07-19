@@ -17,8 +17,14 @@ def detect_candidate_events(video_path: str | Path, sample_fps: float = 8.0) -> 
     if not path.exists():
         raise FileNotFoundError(f"Video file not found: {path}")
 
-    frame_events = _detect_frame_diff_events(path, sample_fps=sample_fps)
     audio_events = _detect_audio_peak_events(path)
+    try:
+        frame_events = _detect_frame_diff_events(path, sample_fps=sample_fps)
+    except RuntimeError:
+        if audio_events:
+            frame_events = []
+        else:
+            raise
     merged = _merge_events(audio_events, frame_events)
 
     if not merged:
@@ -183,4 +189,3 @@ def _std(values: list[float]) -> float:
         return 0.0
     mean = sum(values) / len(values)
     return (sum((value - mean) ** 2 for value in values) / len(values)) ** 0.5
-

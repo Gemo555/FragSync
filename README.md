@@ -65,6 +65,21 @@ Large media files under `data/music`, `data/clips`, and `data/output` are ignore
 
 ## Run Demo
 
+Local editor UI:
+
+```bash
+python -m src.app --open
+```
+
+Then open `http://127.0.0.1:8787` if the browser does not open automatically. The UI can:
+
+- scan `data/music` and `data/clips`;
+- analyze music beats or use manually typed beat times;
+- detect initial kill points from sudden audio intensity changes, with visual frame-diff signals as a secondary cue;
+- edit each clip's beat, kill time, source start, and source end;
+- realign clip durations so kill points land as close as possible to the selected music beat;
+- render and preview `data/output/montage_ui.mp4`.
+
 ```bash
 python -m src.main ^
   --music data/music/song.mp3 ^

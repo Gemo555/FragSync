@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FragSync Studio</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <div class="brand">FragSync Studio</div>
+          <div class="subtle">FPS kill sync montage editor</div>
+        </div>
+        <div class="top-actions">
+          <button id="refreshMediaBtn" class="icon-button" title="Refresh media">R</button>
+          <button id="analyzeBtn" class="primary">Analyze</button>
+          <button id="renderBtn">Render</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="panel assets-panel">
+          <section class="panel-section">
+            <div class="section-title">Source</div>
+            <label>
+              Music
+              <input id="musicPath" type="text" value="data/music/song.mp3">
+            </label>
+            <label>
+              Clips
+              <input id="clipsDir" type="text" value="data/clips">
+            </label>
+          </section>
+
+          <section class="panel-section">
+            <div class="section-title">Beats</div>
+            <textarea id="manualBeats" rows="7" spellcheck="false" placeholder="0.8, 1.6, 2.4, 3.2"></textarea>
+            <div class="inline-actions">
+              <button id="loadExampleBeatsBtn">Example</button>
+              <button id="clearBeatsBtn">Auto</button>
+            </div>
+          </section>
+
+          <section class="panel-section">
+            <div class="section-title">Library</div>
+            <div id="mediaList" class="media-list"></div>
+          </section>
+        </aside>
+
+        <section class="preview-column">
+          <div class="preview-card clip-preview">
+            <div class="preview-head">
+              <div>
+                <div class="section-title">Clip Preview</div>
+                <div id="selectedClipName" class="subtle truncate">No clip selected</div>
+              </div>
+              <div class="inline-actions">
+                <button id="seekKillBtn">Kill Point</button>
+              </div>
+            </div>
+            <div class="video-frame">
+              <video id="clipVideo" controls playsinline></video>
+              <div id="clipMarker" class="marker"></div>
+            </div>
+          </div>
+
+          <div class="preview-card output-preview">
+            <div class="preview-head">
+              <div>
+                <div class="section-title">Montage Preview</div>
+                <div id="outputPath" class="subtle truncate">Render output appears here</div>
+              </div>
+            </div>
+            <div class="video-frame">
+              <video id="outputVideo" controls playsinline></video>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel settings-panel">
+          <section class="panel-section">
+            <div class="section-title">Export</div>
+            <label>
+              Style
+              <select id="style">
+                <option value="clean_sync">clean_sync</option>
+                <option value="slow_impact">slow_impact</option>
+              </select>
+            </label>
+            <div class="split">
+              <label>
+                FPS
+                <input id="fps" type="number" min="24" max="120" step="1" value="60">
+              </label>
+              <label>
+                Max
+                <input id="maxClips" type="number" min="1" max="64" step="1" value="8">
+              </label>
+            </div>
+            <label>
+              Resolution
+              <input id="resolution" type="text" value="1920x1080">
+            </label>
+          </section>
+
+          <section class="panel-section">
+            <div class="section-title">Timing</div>
+            <div class="split">
+              <label>
+                Pre
+                <input id="preEventTime" type="number" min="0.05" max="5" step="0.05" value="0.45">
+              </label>
+              <label>
+                Post
+                <input id="postEventTime" type="number" min="0.05" max="5" step="0.05" value="0.35">
+              </label>
+            </div>
+            <button id="realignBtn" class="wide">Realign Timeline</button>
+          </section>
+
+          <section class="panel-section">
+            <div class="section-title">Status</div>
+            <div id="statusLog" class="status-log">Idle</div>
+          </section>
+        </aside>
+      </main>
+
+      <section class="timeline-panel">
+        <div class="timeline-head">
+          <div>
+            <div class="section-title">Editable Timeline</div>
+            <div id="timelineMeta" class="subtle">No timeline loaded</div>
+          </div>
+          <div class="inline-actions">
+            <button id="saveTimelineBtn">Save</button>
+            <button id="downloadJsonBtn">JSON</button>
+          </div>
+        </div>
+        <div class="timeline-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Clip</th>
+                <th>Beat</th>
+                <th>Kill</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Duration</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody id="timelineBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

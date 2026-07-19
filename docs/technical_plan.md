@@ -43,7 +43,8 @@ Current MVP:
 
 - Pick the highest-score event per clip.
 - Pair clips and beats in order.
-- Cut from `event_time - pre_event_time` to `event_time + post_event_time`.
+- Adjust each clip's pre-roll so the event lands as close as possible to the target beat on the final output timeline.
+- Cut through `event_time + post_event_time` so the kill impact remains visible briefly after the beat.
 - Store style intent through `speed` and `effects`.
 
 Later improvements:
@@ -69,4 +70,3 @@ Later improvements:
 - Real variable-speed rendering.
 - Effects such as zoom, shake, freeze, flash, and motion blur.
 - Optional preview files and render diagnostics.
-
